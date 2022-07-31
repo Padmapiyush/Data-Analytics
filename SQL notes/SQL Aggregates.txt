@@ -1,0 +1,46 @@
+Now, we are going to learn how to perform calculations using SQL. Calculations performed on multiple rows of a table are called aggregates
+
+- COUNT() : count the number of rows
+- SUM() : the sum of the values in a column
+- MAX()/MIN() : the largest/smallest value
+- AVG() : the average of the values in a column
+- ROUND() : round the values in the column
+1. Group By :- GROUP BY is a clause in SQL that is used with aggregate functions. It is used in collaboration with the SELECT statement to arrange identical data into groups. The GROUP BY statement comes after any WHERE statements, but before ORDER BY or LIMIT.
+```
+SELECT price, COUNT(*)
+FROM fake_apps
+WHERE downloads > 20000
+GROUP BY price;
+```
+SQL lets us use column reference(s) in our GROUP BY
+```
+SELECT category, 
+   price,
+   AVG(downloads)
+FROM fake_apps
+GROUP BY 1, 2;
+```
+
+2. Having :- When we want to limit the results of a query based on an aggregate property, use HAVING
+```
+SELECT price,
+ROUND(AVG(downloads)),
+COUNT(*)
+FROM fake_apps
+GROUP BY price
+HAVING COUNT(*) >10;
+```
+
+SUMMARY :- 
+We just learned how to use aggregate functions to perform calculations on your data. What can we generalize so far?
+
+- COUNT(): count the number of rows
+- SUM(): the sum of the values in a column
+- MAX()/MIN(): the largest/smallest value
+- AVG(): the average of the values in a column
+- ROUND(): round the values in the column
+
+Aggregate functions combine multiple rows together to form a single value of more meaningful information.
+
+- GROUP BY is a clause used with aggregate functions to combine data from one or more columns.
+- HAVING limit the results of a query based on an aggregate property.
