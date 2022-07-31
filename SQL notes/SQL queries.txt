@@ -1,0 +1,101 @@
+1. As :- AS is a keyword in SQL that allows you to rename a column or table using an alias. When using AS, the columns are not being renamed in the table. The aliases only appear in the result
+```
+SELECT name AS 'Titles'
+FROM movies;
+```
+
+2. Distinct :- DISTINCT is used to return unique values in the output.
+```
+SELECT DISTINCT year
+FROM movies; 
+```
+
+3. WHERE :- WHERE clause filters the result set to only include rows where the following condition is true.
+```
+SELECT *
+From movies
+WHERE year > 2014;
+```
+
+4. Like :- LIKE can be a useful operator when you want to compare similar values. LIKE is a special operator used with the WHERE clause to search for a specific pattern in a column. The _ means you can substitute any individual character here without breaking the pattern. The names Seven and Se7en both match this pattern.
+```
+SELECT *
+FROM movies
+WHERE name LIKE 'se_en';
+```
+% is a wildcard character that matches zero or more missing letters in the pattern. For example:
+
+- A% matches all movies with names that begin with letter ‘A’
+- %a matches all movies that end with ‘a’
+```
+SELECT * 
+FROM movies
+WHERE name LIKE '%man%';
+```
+5. Is Null :- Unknown values are indicated by NULL.
+It is not possible to test for NULL values with comparison operators, such as = and !=. Instead, we will have to use these operators: IS NULL and IS NOT NULL
+```
+SELECT name
+FROM movies
+WHERE imdb_rating IS NULL;
+```
+
+6. Between :- The BETWEEN operator is used in a WHERE clause to filter the result set within a certain range. It accepts two values that are either numbers, text or dates.
+```
+SELECT *
+FROM movies
+WHERE year BETWEEN '1970' AND '1979';
+```
+
+7. And :- AND is used to combine multiple conditions in a WHERE clause to make the result set more specific and useful.
+```
+SELECT *
+FROM movies
+WHERE year < 1985
+AND genre = 'horror';
+```
+
+8. Or :- OR operator displays a row if any condition is true. With OR, if any of the conditions are true, then the row is added to the result.
+```
+SELECT *
+FROM movies
+WHERE genre = 'romance'
+OR genre = 'comedy';
+```
+
+9. Order By :-  We can sort the results using ORDER BY, either alphabetically or numerically. DESC is a keyword used in ORDER BY to sort the results in descending order. ASC is a keyword used in ORDER BY to sort the results in ascending order
+```
+SELECT name, year, imdb_rating
+FROM movies
+ORDER BY imdb_rating DESC;
+```
+
+10. Limit :- LIMIT is a clause that lets you specify the maximum number of rows the result set will have. LIMIT always goes at the very end of the query. Also, it is not supported in all SQL databases.
+```
+SELECT *
+FROM movies
+ORDER BY imdb_rating DESC
+LIMIT 3;
+```
+
+11. Case :- A CASE statement allows us to create different outputs (usually in the SELECT statement). It is SQL’s way of handling if-then logic.
+```
+SELECT name,
+CASE
+WHEN genre = 'romance' THEN 'Chill'
+WHEN genre = 'comedy' THEN 'Chill'
+ELSE 'Intense'
+END AS 'Mood'
+FROM movies;
+```
+
+SUMMARY :- 
+- SELECT is the clause we use every time we want to query information from a database.
+- AS renames a column or table.
+- DISTINCT return unique values.
+- WHERE is a popular command that lets you filter the results of the query based on conditions that you specify.
+- LIKE and BETWEEN are special operators.
+- AND and OR combines multiple conditions.
+- ORDER BY sorts the result.
+- LIMIT specifies the maximum number of rows that the query will return.
+- CASE creates different outputs.
