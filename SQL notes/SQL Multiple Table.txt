@@ -1,0 +1,104 @@
+JOINs :- A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+```
+SELECT *
+FROM orders
+JOIN customers
+  ON orders.customer_id = customers.customer_id;
+```
+Let’s break down this command:
+
+- The first line selects all columns from our combined table. If we only want to select certain columns, we can specify which ones we want.
+- The second line specifies the first table that we want to look in, orders
+- The third line uses JOIN to say that we want to combine information from orders with customers.
+- The fourth line tells us how to combine the two tables. We want to match orders table’s customer_id column with customers table’s customer_id column.
+
+1. Inner Joins :- When we perform a simple JOIN (often called an inner join) our result only includes rows that match our ON condition.
+```
+SELECT COUNT(*)
+FROM newspaper
+JOIN online
+ON newspaper.id = online.id;
+```
+
+2. Left Joins :- A left join will keep all rows from the first table, regardless of whether there is a matching row in the second table. 
+```
+SELECT *
+FROM newspaper
+LEFT JOIN online
+ON newspaper.id = online.id;
+```
+
+3. CROSS JOIN  :- In CROSS TABLE we just want to combine all rows of one table with all rows of another table. Notice that cross joins don’t require an ON statement. You’re not really joining on any columns!
+```
+SELECT *
+FROM newspaper
+CROSS JOIN months;
+```
+
+```
+SELECT month,
+  COUNT(*) AS 'subscribers'
+FROM newspaper
+CROSS JOIN months
+WHERE start_month <=month AND end_month >= month
+GROUP BY month;
+```
+(*) PRIMARY AND FOREIGN KEY :- Each table has a column that uniquely identifies each row of that table. These special columns are called primary keys. When the primary key for one table appears in a different table, it is called a foreign key.
+
+(*) UNION :- UNION operator allows us to stack one dataset on top of the other. 
+SQL has strict rules for appending data:
+- Tables must have the same number of columns.
+- The columns must have the same data types in the same order as the first table.
+```
+SELECT *
+FROM table1
+UNION
+SELECT *
+FROM table2;
+```
+example - 
+```
+SELECT *
+FROM newspaper
+UNION
+SELECT *
+FROM online;
+```
+
+(*) WITH :- The WITH statement allows us to perform a separate query. Essentially, we are putting a whole first query inside the parentheses () and giving it a name. After that, we can use this name as if it’s a table and write a new query using the first query.
+```
+WITH previous_results AS (
+   SELECT ...
+   ...
+   ...
+   ...
+)
+SELECT *
+FROM previous_results
+JOIN customers
+  ON _____ = _____;
+```
+example - 
+```
+WITH previous_query AS 
+(SELECT customer_id,
+   COUNT(subscription_id) AS 'subscriptions'
+FROM orders
+GROUP BY customer_id)
+SELECT customers.customer_name, previous_query.subscriptions
+FROM previous_query
+JOIN customers
+ON previous_query.customer_id = customers.customer_id;
+```
+
+SUMMARY  - 
+
+Let’s summarize what we’ve learned so far:
+
+- JOIN will combine rows from different tables if the join condition is true.
+- LEFT JOIN will return every row in the left table, and if the join condition is not met, NULL values are used to fill in the columns from the right table.
+- Primary key is a column that serves a unique identifier for the rows in the table.
+- Foreign key is a column that contains the primary key to another table.
+- CROSS JOIN lets us combine all rows of one table with all rows of another table.
+- UNION stacks one dataset on top of another.
+- WITH allows us to define one or more temporary tables that can be used in the final query.
