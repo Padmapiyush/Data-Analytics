@@ -1,0 +1,69 @@
+SQL is abbreviation for Structured Query Language. It is a programming language designed to access, modify, manage or delete data stored in relational database. SQL operates through simple, declarative, statements. 
+```
+ SELECT * FROM celebs;
+```
+
+Relational database
+A relational database is a database that organizes information into one or more tables.
+
+Insert
+The INSERT statement inserts a new row into a table.
+```
+INSERT INTO celebs (id, name, age) 
+VALUES (1, 'Justin Bieber', 22);
+```
+
+Alter
+The ALTER TABLE statement adds a new column to a table.
+```
+ ALTER TABLE celebs
+  ADD COLUMN twitter_handle TEXT;
+  SELECT * FROM celebs;
+```
+
+Update
+The UPDATE statement edits a row in a table.
+```
+ UPDATE celebs
+ SET twitter_handle = '@taylorswift13'
+ WHERE id = 4;
+ SELECT * FROM celebs;
+```
+
+Delete
+The DELETE FROM statement deletes one or more rows from a table.
+```
+ DELETE FROM celebs
+ WHERE twitter_handle IS NULL;
+ SELECT * FROM celebs;
+```
+
+Constraints
+Constraints that add information about how a column can be used are invoked after specifying the data type for a column. They can be used to tell the database to reject inserted data that does not adhere to a certain restriction
+1. PRIMARY KEY columns can be used to uniquely identify the row. Attempts to insert a row with an identical value to a row already in the table will result in a constraint violation which will not allow you to insert the new row.
+2. UNIQUE columns have a different value for every row. This is similar to PRIMARY KEY except a table can have many different UNIQUE columns.
+3. NOT NULL columns must have a value. Attempts to insert a row without a value for a NOT NULL column will result in a constraint violation and the new row will not be inserted.
+4. DEFAULT columns take an additional argument that will be the assumed value for an inserted row if the new row does not specify a value for that column.
+```
+ CREATE TABLE awards ( 
+   id INTEGER PRIMARY KEY, 
+   recipient TEXT NOT NULL, 
+   award_name TEXT DEFAULT 'Grammy' 
+ );
+```
+
+Summary :- 
+
+SQL is a programming language designed to manipulate and manage data stored in relational databases.
+- A relational database is a database that organizes information into one or more tables.
+- A table is a collection of data organized into rows and columns.
+
+A statement is a string of characters that the database recognizes as a valid command.
+
+- CREATE TABLE creates a new table.
+- INSERT INTO adds a new row to a table.
+- SELECT queries data from a table.
+- ALTER TABLE changes an existing table.
+- UPDATE edits a row in a table.
+- DELETE FROM deletes rows from a table.
+Constraints add information about how a column can be used.
