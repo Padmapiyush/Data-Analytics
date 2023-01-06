@@ -1,5 +1,5 @@
-# Learn data analyst skills Roadmap 
-##step by step in 3 months
+# Data analyst skills Roadmap 
+### Learn step by step in 3 months
 ------------------------------------------------------
 
 Following is a schedule to learn data science step by step considering **4 hours** of dedicated, focused study every single day. This program is perfect for beginners with no knowledge of data science and programming.
