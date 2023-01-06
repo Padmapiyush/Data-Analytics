@@ -69,7 +69,8 @@ Aggregate functions combine multiple rows together to form a single value of mor
 - HAVING limit the results of a query based on an aggregate property.
 
 
-# Publication
+# Handling Multiple Tables
+
 - JOIN will combine rows from different tables if the join condition is true.
 
 - LEFT JOIN will return every row in the left table, and if the join condition is not met, NULL values are used to fill in the columns from the right table.
